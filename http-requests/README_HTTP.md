@@ -1,6 +1,4 @@
-# HTTP Requests for Library API
 
-This folder contains ready-to-use HTTP requests for testing the Security25 Library project.
 
 ## Endpoints
 

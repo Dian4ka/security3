@@ -1,0 +1,91 @@
+### Environment
+@baseUrl = http://localhost:8080
+@contentType = application/json
+@base64Auth = dXNlcjpwYXNz  # base64(user:pass)
+
+### ---------- AUTH ----------
+
+# Register
+POST {{baseUrl}}/api/v1/auth/register
+Content-Type: {{contentType}}
+
+{
+  "email": "reader@example.com",
+  "password": "Password123!",
+  "fullName": "John Reader"
+}
+
+###
+
+# Login
+POST {{baseUrl}}/api/v1/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "reader@example.com",
+  "password": "Password123!"
+}
+
+### ---------- BOOKS CRUD ----------
+
+# List books
+GET {{baseUrl}}/api/v1/books
+Authorization: Basic {{base64Auth}}
+
+###
+
+# Get book by ID
+GET {{baseUrl}}/api/v1/books/1
+Authorization: Basic {{base64Auth}}
+
+###
+
+# Create book
+POST {{baseUrl}}/api/v1/books
+Authorization: Basic {{base64Auth}}
+Content-Type: {{contentType}}
+
+{
+  "title": "Clean Code",
+  "author": "Robert C. Martin",
+  "isbn": "9780132350884",
+  "publishedYear": 2008
+}
+
+###
+
+# Update book
+PUT {{baseUrl}}/api/v1/books/1
+Authorization: Basic {{base64Auth}}
+Content-Type: {{contentType}}
+
+{
+  "title": "Clean Code (2nd Edition)",
+  "author": "Robert C. Martin",
+  "isbn": "9780132350884",
+  "publishedYear": 2020
+}
+
+###
+
+# Delete book
+DELETE {{baseUrl}}/api/v1/books/1
+Authorization: Basic {{base64Auth}}
+
+### ---------- LOANS ----------
+
+# Borrow book
+POST {{baseUrl}}/api/v1/loans/borrow
+Authorization: Basic {{base64Auth}}
+Content-Type: {{contentType}}
+
+{
+  "bookId": 1,
+  "dueDate": "2025-09-30"
+}
+
+###
+
+# Return book
+POST {{baseUrl}}/api/v1/loans/1/return
+Authorization: Basic {{base64Auth}}
